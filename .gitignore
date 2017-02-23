@@ -7,3 +7,10 @@
 /build
 /captures
 .externalNativeBuild
+libs/
+src/main/res/drawable/
+.idea/dictionaries/
+.idea/modules.xml
+.idea/runConfigurations.xml
+.idea/vcs.xml
+app/src/main/res/drawable/
