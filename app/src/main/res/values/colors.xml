@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#5E58A3</color>
+    <color name="colorPrimaryDark">#534D8F</color>
+
+    <color name="colorAccent">#FFFF00</color>
+    <color name="colorWhite">#ffffff</color>
+
+
+
+
+    <color name="colorVeryEarlyMorning">#483078</color>
+    <color name="colorEarlyMorning">#906090</color>
+    <color name="colorMorning">#AEE8FB</color>
+    <color name="colorMidMorning">#B0F8FF</color>
+    <color name="colorAfternoon">#F1D38D</color>
+    <color name="colorEarlyEvening">#604878</color>
+    <color name="colorEvening">#534D8F</color>
+
+
+    <color name="colorMidnight">#212121</color>
+
 </resources>
