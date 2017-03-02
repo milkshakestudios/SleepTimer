@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private int timeFromPrefs;
 
     private static String HOUR_KEY = "hourKey";
+    private int a = 1;
 
     private ArrayList<Integer> colorList;
 
