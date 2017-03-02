@@ -9,15 +9,13 @@
 
 
 
-    <color name="colorVeryEarlyMorning">#483078</color>
-    <color name="colorEarlyMorning">#906090</color>
-    <color name="colorMorning">#AEE8FB</color>
-    <color name="colorMidMorning">#B0F8FF</color>
-    <color name="colorAfternoon">#F1D38D</color>
-    <color name="colorEarlyEvening">#604878</color>
+    <color name="colorVeryEarlyMorning">#5326f7</color>
+    <color name="colorEarlyMorning">#7986cb</color>
+    <color name="colorMorning">#b2dfdb</color>
+    <color name="colorMidMorning">#FFD54F</color>
+    <color name="colorAfternoon">#FF9800</color>
+    <color name="colorEarlyEvening">#9575CD</color>
     <color name="colorEvening">#534D8F</color>
-
-
     <color name="colorMidnight">#212121</color>
 
 </resources>

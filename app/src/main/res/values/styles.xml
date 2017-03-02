@@ -19,7 +19,7 @@
     <style name="button_blend_background" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textColor">@color/colorWhite</item>
     </style>
-    
+
 
 
 

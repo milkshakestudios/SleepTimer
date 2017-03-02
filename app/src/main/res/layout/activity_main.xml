@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimary"
     tools:context="com.milkshakestudio.sleeptimer.sleeptimer.MainActivity">
 
 
@@ -35,6 +35,27 @@
         <!--android:layout_centerVertical="true"-->
         <!--android:text="MINUTES"/>-->
 
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="300dp"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_centerInParent="true">-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:layout_weight="1"-->
+            <!--&gt;-->
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/colorPrimaryDark"-->
+            <!--android:layout_weight="1"-->
+            <!--&gt;-->
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
 
     <TextView
         android:layout_width="match_parent"
