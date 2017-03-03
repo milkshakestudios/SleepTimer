@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -57,13 +58,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        //DEBUG
-        timeFromPrefs = 20;
-        timeCurrent = 5;
-
         setUpScrollColorsAndAnimate();
 
+    }
+
+    private void runTest(int i, int i1) {
+        timeCurrent = i1;
+        calc(i);
+
+        Log.v("abhi","timeFromPrefs = " + i + " | timeCurrent = " + i1);
+        for(Integer a: arrayList){
+            Log.d("abhi", "onCreate: + x = "+ a);
+        }
+        Log.d("abhi", "-----------");
+        arrayList.clear();
+//        setUpScrollColorsAndAnimate();
     }
 
     private void setUpScrollColorsAndAnimate() {
@@ -83,8 +92,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         incrementalTime = timeFromPrefs;
-        arrayList.add(colorBasedOnLastLoginTime);
-        calculateColorZonesTillCurrentTime(timeFromPrefs);
+
+        calc(incrementalTime);
+
+
 
         ArgbEvaluator evaluator = new ArgbEvaluator();
         animator = new ValueAnimator();
@@ -100,58 +111,50 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    boolean dayRolledOver = false;
-    private void calculateColorZonesTillCurrentTime(int timeSaved) {
-//        if(!dayRolledOver) {
-//            if (timeSaved == timeCurrent) {
-//                arrayList.add(getColorValueBasedOnHour(timeSaved));
-//                return;
-//            }
-//
-//            if (timeSaved > MAXHOUR_INDAY) {
-////                timeSaved = timeSaved - MAXHOUR_INDAY - 1;
-//                dayRolledOver = true;
-//                calculateColorZonesTillCurrentTime(timeSaved);
-//            }
-//
-//            if (timeSaved <= timeCurrent) {
-//                arrayList.add(getColorValueBasedOnHour(timeSaved));
-//                timeSaved += 3;
-//                calculateColorZonesTillCurrentTime(timeSaved);
-//            } else {
-//                if (((float) timeSaved - (float) timeCurrent) / 3F > 1) {
-//                    return;
-//                } else {
-//                    arrayList.add(getColorValueBasedOnHour(timeSaved));
-//                }
-//            }
-//        }else{
-//            if(timeCurrent < timeSaved){
-//                return;
-//            }
-//        }
-
-        if(timeSaved == timeCurrent){
-            arrayList.add(getColorValueBasedOnHour(timeSaved));
+    public void calc(int copy){
+        if(timeCurrent == copy){
+            arrayList.add(getColorValueBasedOnHour(copy));
             return;
         }
 
-        if(timeSaved > MAXHOUR_INDAY){
-            timeSaved = timeSaved - MAXHOUR_INDAY - 1;
-            dayRolledOver = true;
+        if(copy < timeCurrent){
+            arrayList.add(getColorValueBasedOnHour(copy));
+            copy+=3;
+            if(copy>timeCurrent) {
+
+                if(copy>MAXHOUR_INDAY){
+                    copy = copy-MAXHOUR_INDAY-1;
+                }
+                if (withinRange(copy)) {
+                    arrayList.add(getColorValueBasedOnHour(copy));
+                }else {
+                    return;
+                }
+            }else {
+                calc(copy);
+            }
+        } else if (timeCurrent < copy){
+            arrayList.add(getColorValueBasedOnHour(copy));
+            int diffCopy = 24 - copy;
+            int diffTimeCurrent = timeCurrent;
+            int sumDiff = diffCopy + diffTimeCurrent;
+            for(int i =0;i<sumDiff/3;i++){
+                copy+=3;
+                if(copy>MAXHOUR_INDAY){
+                    copy=copy-MAXHOUR_INDAY-1;
+                }
+                arrayList.add(getColorValueBasedOnHour(copy));
+            }
         }
+    }
 
-
-        if(timeSaved < timeCurrent && !dayRolledOver){
-            arrayList.add(getColorValueBasedOnHour(timeSaved));
-            timeSaved+=3;
-            calculateColorZonesTillCurrentTime(timeSaved);
-        }else {
-            arrayList.add(getColorValueBasedOnHour(timeSaved));
-            timeSaved += 3;
-            calculateColorZonesTillCurrentTime(timeSaved);
+    private boolean withinRange(int copy) {
+        double a = Math.floor((double)timeCurrent/3)*3;
+        if(copy >= a && copy <= a+2){
+            return true;
+        }else{
+            return false;
         }
-
     }
 
 
@@ -190,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
             colorCurrent = getResources().getColor(R.color.colorEvening);
         }else if(timeCurrent >= 21 && timeCurrent <= 23){    //9pm   to 12am
             colorCurrent = getResources().getColor(R.color.colorMidnight);
+        }else if(timeCurrent == 24) {
+            colorCurrent = getResources().getColor(R.color.colorMidnight);
         }else{
             colorCurrent = getResources().getColor(R.color.colorPrimary);
         }
@@ -207,8 +212,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private int fetchCurrentTime() {
         int currentTime = Calendar.getInstance().getTime().getHours();
-//        SharedPreferences sharedPreferences = getSharedPreferences("sleepTimer",MODE_PRIVATE);
-//        sharedPreferences.edit().putInt(HOUR_KEY,currentTime).apply();
+        SharedPreferences sharedPreferences = getSharedPreferences("sleepTimer",MODE_PRIVATE);
+        sharedPreferences.edit().putInt(HOUR_KEY,currentTime).apply();
         return currentTime;
     }
 
