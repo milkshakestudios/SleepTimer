@@ -11,9 +11,9 @@
 
     <color name="colorVeryEarlyMorning">#5326f7</color>
     <color name="colorEarlyMorning">#7986cb</color>
-    <color name="colorMorning">#b2dfdb</color>
-    <color name="colorMidMorning">#FFD54F</color>
-    <color name="colorAfternoon">#FF9800</color>
+    <color name="colorMorning">#6096af</color>
+    <color name="colorMidMorning">#a7914c</color>
+    <color name="colorAfternoon">#b78842</color>
     <color name="colorEarlyEvening">#9575CD</color>
     <color name="colorEvening">#534D8F</color>
     <color name="colorMidnight">#212121</color>

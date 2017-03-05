@@ -5,13 +5,10 @@ import android.animation.ValueAnimator;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,40 +37,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.timer_layout);
 
-        timeFromPrefs = loadTimeFromPreferences();
-        timeCurrent = fetchCurrentTime();
+//        timeFromPrefs = loadTimeFromPreferences();
+//        timeCurrent = fetchCurrentTime();
 
-        TextView timeField = (TextView) findViewById(R.id.timeField);
-        timeField.setText(getString(R.string.currentHour,String.valueOf(timeCurrent)));
+//        TextView timeField = (TextView) findViewById(R.id.timeField);
+//        timeField.setText(getString(R.string.currentHour,String.valueOf(timeCurrent)));
 
-        AppCompatButton startButton = (AppCompatButton) findViewById(R.id.start_stop_btn);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(animator!=null)
-                    if(!animator.isRunning()) {
-                        animator.start();
-                    }
-            }
-        });
+//        AppCompatButton startButton = (AppCompatButton) findViewById(R.id.start_stop_btn);
+//        startButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(animator!=null)
+//                    if(!animator.isRunning()) {
+//                        animator.start();
+//                    }
+//            }
+//        });
 
-        setUpScrollColorsAndAnimate();
 
-    }
-
-    private void runTest(int i, int i1) {
-        timeCurrent = i1;
-        calc(i);
-
-        Log.v("abhi","timeFromPrefs = " + i + " | timeCurrent = " + i1);
-        for(Integer a: arrayList){
-            Log.d("abhi", "onCreate: + x = "+ a);
-        }
-        Log.d("abhi", "-----------");
-        arrayList.clear();
 //        setUpScrollColorsAndAnimate();
+
     }
 
     private void setUpScrollColorsAndAnimate() {
@@ -97,12 +82,12 @@ public class MainActivity extends AppCompatActivity {
         calc(incrementalTime);
 
 
-
         ArgbEvaluator evaluator = new ArgbEvaluator();
         animator = new ValueAnimator();
         animator.setIntValues(convertIntegers(arrayList));
         animator.setEvaluator(evaluator);
-        animator.setDuration(10000);
+        animator.setDuration((arrayList.size()-1)*1000);
+
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -115,11 +100,12 @@ public class MainActivity extends AppCompatActivity {
     public void calc(int copy){
         if(timeCurrent == copy){
             arrayList.add(getColorValueBasedOnHour(copy));
+//            arrayList.add(copy);
             return;
         }
-
         if(copy < timeCurrent){
             arrayList.add(getColorValueBasedOnHour(copy));
+//            arrayList.add(copy);
             copy+=3;
             if(copy>timeCurrent) {
 
@@ -127,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     copy = copy-MAXHOUR_INDAY-1;
                 }
                 if (withinRange(copy)) {
+//                    arrayList.add(copy);
                     arrayList.add(getColorValueBasedOnHour(copy));
                 }else {
                     return;
@@ -135,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 calc(copy);
             }
         } else if (timeCurrent < copy){
+//            arrayList.add(copy);
             arrayList.add(getColorValueBasedOnHour(copy));
             int diffCopy = 24 - copy;
             int diffTimeCurrent = timeCurrent;
@@ -144,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 if(copy>MAXHOUR_INDAY){
                     copy=copy-MAXHOUR_INDAY-1;
                 }
+//                arrayList.add(copy);
                 arrayList.add(getColorValueBasedOnHour(copy));
             }
         }
@@ -159,18 +148,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
-    }
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        if (hasFocus) {
+//            getWindow().getDecorView().setSystemUiVisibility(
+//                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+//                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
+//    }
 
 
     private int getColorValueBasedOnHour(int timeCurrent) {
@@ -216,6 +205,19 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("sleepTimer",MODE_PRIVATE);
         sharedPreferences.edit().putInt(HOUR_KEY,currentTime).apply();
         return currentTime;
+    }
+
+    private void runTest(int i, int i1) {
+        timeCurrent = i1;
+        calc(i);
+
+        Log.v("abhi","timeFromPrefs = " + i + " | timeCurrent = " + i1);
+        for(Integer a: arrayList){
+            Log.d("abhi", "onCreate: + x = "+ a);
+        }
+        Log.d("abhi", "-----------");
+        arrayList.clear();
+//        setUpScrollColorsAndAnimate();
     }
 
 }

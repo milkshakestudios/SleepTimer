@@ -4,10 +4,13 @@
     <string name="start">Start</string>
 
     <string name="currentHour">%s</string>
+    <string name="timer_delete">Delete</string>
 
     <plurals name="minutes">
         <item quantity="one">MINUTE</item>
         <item quantity="other">MINUTES</item>
     </plurals>
+
+
 
 </resources>

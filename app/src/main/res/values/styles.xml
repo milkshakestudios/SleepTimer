@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -20,7 +20,22 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
+    <style name="Widget.Button.TimerSetupDigit" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">36sp</item>
+    </style>
 
+    <style name="ThemeOverlay.Control.Accent" parent="ThemeOverlay.AppCompat">
+        <!-- Attributes from android.support.v7.appcompat -->
+        <item name="colorControlActivated">?attr/colorAccent</item>
+    </style>
+
+    <style name="Widget.ImageButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
 
 
 </resources>
