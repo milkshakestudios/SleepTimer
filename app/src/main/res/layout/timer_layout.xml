@@ -1,12 +1,13 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="@color/colorPrimary"
     android:paddingBottom="@dimen/fab_height"
-    android:paddingTop="56dp">
+    android:paddingTop="56dp"
+    >
 
     <include layout="@layout/timer_setup_time" />
 
@@ -17,5 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:fabSize="normal"-->
+        <!--android:src="@drawable/ic_play_arrow_white_24dp"/>-->
 
 </LinearLayout>

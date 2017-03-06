@@ -1,4 +1,4 @@
-package com.milkshakestudio.sleeptimer.sleeptimer;
+package com.milkshakestudio.sleeptimer.sleeptimer.test;
 
 /*
  *
@@ -43,7 +43,8 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
+
+import com.milkshakestudio.sleeptimer.sleeptimer.R;
 
 public class CircularSeekBar extends View {
 

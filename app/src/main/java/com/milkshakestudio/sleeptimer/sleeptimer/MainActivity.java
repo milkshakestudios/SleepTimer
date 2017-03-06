@@ -5,10 +5,13 @@ import android.animation.ValueAnimator;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,27 +40,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.timer_layout);
+        setContentView(R.layout.activity_main);
 
-//        timeFromPrefs = loadTimeFromPreferences();
-//        timeCurrent = fetchCurrentTime();
+        timeFromPrefs = loadTimeFromPreferences();
+        timeCurrent = fetchCurrentTime();
 
-//        TextView timeField = (TextView) findViewById(R.id.timeField);
-//        timeField.setText(getString(R.string.currentHour,String.valueOf(timeCurrent)));
+        TextView timeField = (TextView) findViewById(R.id.timeField);
+        timeField.setText(getString(R.string.currentHour,String.valueOf(timeCurrent)));
 
-//        AppCompatButton startButton = (AppCompatButton) findViewById(R.id.start_stop_btn);
-//        startButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(animator!=null)
-//                    if(!animator.isRunning()) {
-//                        animator.start();
-//                    }
-//            }
-//        });
+        AppCompatButton startButton = (AppCompatButton) findViewById(R.id.start_stop_btn);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(animator!=null)
+                    if(!animator.isRunning()) {
+                        animator.start();
+                    }
+            }
+        });
 
 
-//        setUpScrollColorsAndAnimate();
+        setUpScrollColorsAndAnimate();
 
     }
 

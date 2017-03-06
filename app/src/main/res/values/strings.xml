@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Sleep Timer</string>
     <string name="settings">Settings</string>
     <string name="start">Start</string>
@@ -6,11 +6,36 @@
     <string name="currentHour">%s</string>
     <string name="timer_delete">Delete</string>
 
-    <plurals name="minutes">
-        <item quantity="one">MINUTE</item>
-        <item quantity="other">MINUTES</item>
+
+    <plurals name="hours">
+        <!-- Duration for one hour -->
+        <item quantity="one">1 hour</item>
+        <!-- Duration for more than one hour -->
+        <item quantity="other"><xliff:g id="number" example="7">%s</xliff:g> hours</item>
     </plurals>
 
+    <string name="timer_setup_description"><xliff:g id="hours" example="1 hour">%1$s</xliff:g>, <xliff:g id="minutes" example="15 minutes">%2$s</xliff:g>, <xliff:g id="seconds" example="30 seconds">%3$s</xliff:g></string>
+    <string name="timer_descriptive_delete">Delete <xliff:g id="number_string">%s</xliff:g></string>
+
+    <plurals name="minutes">
+        <!-- Duration for one minute -->
+        <item quantity="one">1 minute</item>
+        <!-- Duration for more than one minute -->
+        <item quantity="other"><xliff:g id="number" example="7">%s</xliff:g> minutes</item>
+    </plurals>
+
+    <plurals name="seconds">
+        <!-- Duration for one second -->
+        <item quantity="one">1 second</item>
+        <!-- Duration for more than one minute -->
+        <item quantity="other"><xliff:g id="number" example="7">%s</xliff:g> seconds</item>
+    </plurals>
+
+    <string name="hours_label">h</string>
+    <!-- Abbreviation for temporal minutes [CHAR LIMIT=1] -->
+    <string name="minutes_label">m</string>
+    <!-- Abbreviation for temporal seconds [CHAR LIMIT=1] -->
+    <string name="seconds_label">s</string>
 
 
 </resources>
