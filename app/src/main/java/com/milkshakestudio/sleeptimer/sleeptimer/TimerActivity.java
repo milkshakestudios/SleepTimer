@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.BidiFormatter;
@@ -43,6 +44,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     private ImageButton mDeleteView;
     private View mDividerView;
     private TextView[] mDigitViews;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +62,17 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         final String hoursLabel = bf.unicodeWrap(this.getString(R.string.hours_label));
         final String minutesLabel = bf.unicodeWrap(this.getString(R.string.minutes_label));
         final String secondsLabel = bf.unicodeWrap(this.getString(R.string.seconds_label));
+
+
+
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swapButton();
+
+            }
+        });
 
 
         mTimeTemplate = TextUtils.expandTemplate("^1^4 ^2^5 ^3^6",
@@ -111,6 +124,17 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         updateTime();
         updateDeleteAndDivider();
 
+    }
+
+    private boolean isPlay = true;
+    private void swapButton() {
+        if(isPlay) {
+            isPlay = false;
+            floatingActionButton.setImageDrawable(getDrawable(R.drawable.ic_pause_white_24dp));
+        }else {
+            isPlay = true;
+            floatingActionButton.setImageDrawable(getDrawable(R.drawable.ic_play_arrow_white_24dp));
+        }
     }
 
     private void updateTime() {
