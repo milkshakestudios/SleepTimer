@@ -1,31 +1,115 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/parent_view"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="@color/colorPrimary"
-    android:paddingBottom="@dimen/fab_height"
-    android:paddingTop="56dp"
+    android:paddingBottom="@dimen/top_bottom_margin"
+    android:paddingTop="@dimen/top_bottom_margin"
     >
 
-    <include layout="@layout/timer_setup_time" />
-
-    <include layout="@layout/setup_divider" />
-
-    <include
-        layout="@layout/button_pad"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:orientation="vertical"
+        android:id="@+id/timer_view"
+        android:layout_weight="0.8"
+        android:visibility="gone"
+        >
+        <include
+            layout="@layout/test_layout"
+            />
+    </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:fabSize="normal"
-        android:id="@+id/fab"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_play_arrow_white_24dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="0.8"
+        android:id="@+id/my_view"
+        >
+        <include layout="@layout/timer_setup_time" />
+
+        <include layout="@layout/setup_divider"
+            />
+
+        <include
+            layout="@layout/button_pad"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2">
+
+        <android.support.v7.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="ltr"
+            app:rowCount="1"
+            app:columnCount="3"
+            >
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_row="0"
+                app:layout_rowWeight="1"
+                app:layout_column="0"
+                app:layout_columnWeight="1" >
+                <ImageButton
+                    android:id="@+id/timer_delete"
+                    android:visibility="invisible"
+                    style="@style/Widget.ImageButton"
+                    android:padding="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="center"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_delete_white_48dp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_row="0"
+                app:layout_rowWeight="1"
+                app:layout_column="1"
+                app:layout_columnWeight="1" >
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_play_arrow_white_24dp"
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                app:fabSize="normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_row="0"
+                app:layout_rowWeight="1"
+                app:layout_column="2"
+                app:layout_columnWeight="1" >
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+        </android.support.v7.widget.GridLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

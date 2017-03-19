@@ -27,6 +27,13 @@
         <activity android:name=".TimerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             />
+        <activity android:name=".DummyActivity"
+            android:theme="@style/noAnimTheme"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            />
+        <activity android:name=".TestBench"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            />
     </application>
 
 </manifest>
